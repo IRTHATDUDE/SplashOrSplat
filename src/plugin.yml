@@ -2,3 +2,7 @@ main: com.kyloka.splashAndSpat.Main
 version: 1.0
 name: SplashAndSplat
 description: You splash, if you miss you splat
+
+commands:
+  ssjoin:
+    description: join SplashOrSplat
