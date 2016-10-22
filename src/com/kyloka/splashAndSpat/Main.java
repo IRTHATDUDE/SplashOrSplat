@@ -1,6 +1,7 @@
 package com.kyloka.splashAndSpat;
 
 import com.kyloka.splashAndSpat.command.Command;
+import com.kyloka.splashAndSpat.config.Configuration;
 import com.kyloka.splashAndSpat.event.Event;
 import org.bukkit.plugin.java.JavaPlugin;
 
@@ -11,9 +12,17 @@ public class Main extends JavaPlugin {
     private static Main instance;
     @Override
     public void onEnable() {
+
+
         instance = this;
+        Configuration config = new Configuration();
+        config.loadAllConfig();
+        Command myCmd = new Command();
+        myCmd.registerCommands();
         Event.registerEvents();
-        Command.registerCommands();
+
+
+
     }
     public static Main getInstance(){
         return instance;

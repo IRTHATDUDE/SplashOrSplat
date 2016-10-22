@@ -8,6 +8,7 @@ import org.bukkit.plugin.PluginManager;
  */
 public class Event  {
     public static void registerEvents(){
+
         PluginManager pm = Main.getInstance().getServer().getPluginManager();
         pm.registerEvents(new ReplaceBlockUnderEvent(), Main.getInstance());
 

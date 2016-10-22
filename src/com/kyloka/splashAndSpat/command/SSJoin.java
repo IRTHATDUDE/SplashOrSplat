@@ -4,7 +4,7 @@ import com.kyloka.splashAndSpat.Main;
 import com.kyloka.splashAndSpat.exception.PlayerOnListException;
 import com.kyloka.splashAndSpat.game.GameList;
 import com.kyloka.splashAndSpat.game.GameState;
-import com.kyloka.splashAndSpat.player.PlayerUser;
+import com.kyloka.splashAndSpat.objects.PlayerUser;
 import org.bukkit.ChatColor;
 import org.bukkit.command.*;
 import org.bukkit.command.Command;
