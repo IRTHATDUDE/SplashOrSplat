@@ -38,7 +38,9 @@ public class Configuration {
         }
 
     }
-
+    public void loadDataConfig(){
+        try{dataConfig.load(dataFile);}catch(Exception e) {e.printStackTrace();}
+    }
     public void saveDataConfig() {
         try {
             dataConfig.save(dataFile);

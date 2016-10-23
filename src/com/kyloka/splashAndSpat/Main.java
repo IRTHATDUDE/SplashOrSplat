@@ -1,5 +1,6 @@
 package com.kyloka.splashAndSpat;
 
+import com.kyloka.splashAndSpat.arena.RegisterArenas;
 import com.kyloka.splashAndSpat.command.Command;
 import com.kyloka.splashAndSpat.config.Configuration;
 import com.kyloka.splashAndSpat.event.Event;
@@ -17,7 +18,9 @@ public class Main extends JavaPlugin {
         instance = this;
         Configuration config = new Configuration();
         config.loadAllConfig();
+        RegisterArenas registerArenas = new RegisterArenas();
         Command myCmd = new Command();
+
         myCmd.registerCommands();
         Event.registerEvents();
 

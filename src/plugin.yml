@@ -8,3 +8,5 @@ commands:
     description: join SplashOrSplat
   sspos1:
     description: lmao
+  sspos2:
+    description: ayy

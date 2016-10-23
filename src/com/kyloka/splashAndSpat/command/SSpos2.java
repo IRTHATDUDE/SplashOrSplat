@@ -1,7 +1,6 @@
 package com.kyloka.splashAndSpat.command;
 
 import com.kyloka.splashAndSpat.Main;
-import com.kyloka.splashAndSpat.exception.SenderNotAPlayerException;
 import com.kyloka.splashAndSpat.objects.Arena;
 import org.bukkit.ChatColor;
 import org.bukkit.Location;
@@ -12,9 +11,9 @@ import org.bukkit.entity.Player;
 import java.util.logging.Level;
 
 /**
- * Created by Matthew on 10/20/2016.
+ * Created by Matthew on 10/22/2016.
  */
-public class SSpos1 implements CommandExecutor {
+public class SSpos2 implements CommandExecutor{
     @Override
     public boolean onCommand(CommandSender sender, Command command, String s, String[] args) {
         if(!(sender instanceof Player)){
@@ -31,13 +30,14 @@ public class SSpos1 implements CommandExecutor {
             return false;
         }
         if(args[0].equals("lobby")){
-            arena1.setLobbyLoc1(loc);
-            sender.sendMessage(ChatColor.GREEN + "Lobby join location has been set");
+            sender.sendMessage(ChatColor.RED + "It's not necessary to register a second position for a lobby");
         }
+        if(args[0].equals("drop")){
+
+        }
+
 
 
         return false;
     }
-
-
 }
