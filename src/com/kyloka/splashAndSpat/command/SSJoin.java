@@ -8,12 +8,15 @@ import com.kyloka.splashAndSpat.game.GameList;
 import com.kyloka.splashAndSpat.game.GameState;
 import com.kyloka.splashAndSpat.objects.Arena;
 import com.kyloka.splashAndSpat.objects.PlayerUser;
+import com.kyloka.splashAndSpat.woolControl.ColoredWool;
+import inventory.InventoryGUI;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.Location;
 import org.bukkit.command.*;
 import org.bukkit.command.Command;
 import org.bukkit.entity.Player;
+import org.bukkit.inventory.Inventory;
 
 import java.util.logging.Level;
 
@@ -42,6 +45,10 @@ public class SSJoin implements CommandExecutor {
         else{
 
         }
+        InventoryGUI xD = new InventoryGUI(10);
+        xD.setInventory();
+        player.openInventory(xD.getInv());
+        player.sendMessage(ColoredWool.values().length + "");
         return true;
     }
 

@@ -2,6 +2,7 @@ package com.kyloka.splashAndSpat.objects;
 
 import com.kyloka.splashAndSpat.Main;
 import com.kyloka.splashAndSpat.exception.PlayerOnListException;
+import com.kyloka.splashAndSpat.woolControl.ColoredWool;
 import org.bukkit.Location;
 import org.bukkit.block.Block;
 import org.bukkit.entity.Player;
@@ -18,7 +19,6 @@ public class PlayerUser {
     private List<Player> listOfPlayers = new ArrayList<>();
     private HashMap<Player,Location> playerLocationHashMap = new HashMap<>();
     private HashMap<Player,Block> playerItemStackHashMap = new HashMap<>();
-
     public void addPlayer(Player player) throws PlayerOnListException{
         if(listOfPlayers.contains(player)){
             throw new PlayerOnListException(player);
