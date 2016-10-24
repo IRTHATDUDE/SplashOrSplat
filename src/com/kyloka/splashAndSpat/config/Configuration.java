@@ -12,13 +12,13 @@ import java.util.logging.Logger;
  * Created by Matthew on 10/22/2016.
  */
 public class Configuration {
-    private File pluginFolder = Main.getInstance().getDataFolder();
-    private File dataFile = new File(pluginFolder, "data.yml");
-    private Logger logger = Main.getInstance().getLogger();
+    private static File pluginFolder = Main.getInstance().getDataFolder();
+    private static File dataFile = new File(pluginFolder, "data.yml");
+    private static Logger logger = Main.getInstance().getLogger();
+    static Configuration instance;
+    private static YamlConfiguration dataConfig = new YamlConfiguration();
 
-    private YamlConfiguration dataConfig = new YamlConfiguration();
-
-    public void loadAllConfig() {
+    public static void loadAllConfig() {
 
         try {
             if (!pluginFolder.exists()) {
@@ -38,10 +38,11 @@ public class Configuration {
         }
 
     }
-    public void loadDataConfig(){
+
+    public static void loadDataConfig(){
         try{dataConfig.load(dataFile);}catch(Exception e) {e.printStackTrace();}
     }
-    public void saveDataConfig() {
+    public static void saveDataConfig() {
         try {
             dataConfig.save(dataFile);
         }
@@ -50,7 +51,7 @@ public class Configuration {
         }
     }
 
-    public YamlConfiguration getDataConfig() {
+    public static YamlConfiguration getDataConfig() {
         return dataConfig;
     }
 }
