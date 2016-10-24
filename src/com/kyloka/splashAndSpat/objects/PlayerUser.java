@@ -18,7 +18,7 @@ public class PlayerUser {
     private List<Player> listOfPlayers = new ArrayList<>();
     private HashMap<Player,Location> playerLocationHashMap = new HashMap<>();
     private HashMap<Player,Block> playerItemStackHashMap = new HashMap<>();
-    
+
     public void addPlayer(Player player) throws PlayerOnListException{
         if(listOfPlayers.contains(player)){
             throw new PlayerOnListException(player);
