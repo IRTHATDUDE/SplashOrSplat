@@ -17,6 +17,7 @@ import org.bukkit.command.*;
 import org.bukkit.command.Command;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.Inventory;
+import org.bukkit.inventory.ItemStack;
 
 import java.util.logging.Level;
 
@@ -45,8 +46,8 @@ public class SSJoin implements CommandExecutor {
         else{
 
         }
-        InventoryGUI xD = new InventoryGUI(10);
-        xD.setInventory();
+        InventoryGUI xD = RegisterArenas.getArena1().getGui();
+
         player.openInventory(xD.getInv());
         player.sendMessage(ColoredWool.values().length + "");
         return true;

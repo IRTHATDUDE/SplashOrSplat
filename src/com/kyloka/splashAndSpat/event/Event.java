@@ -11,6 +11,7 @@ public class Event  {
 
         PluginManager pm = Main.getInstance().getServer().getPluginManager();
         pm.registerEvents(new ReplaceBlockUnderEvent(), Main.getInstance());
+        pm.registerEvents(new SelectBlockEvent(), Main.getInstance());
 
     }
 

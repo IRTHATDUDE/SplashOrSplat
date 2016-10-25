@@ -12,16 +12,16 @@ import java.io.*;
 public class RegisterArenas {
 
 
-    private Arena arena1 = new Arena("Alpha");
-    private Arena arena2 = new Arena("Delta");
-    private Arena arena3 = new Arena("Phi");
-    private Arena arena4 = new Arena("Omega");
-    private File configFile = new File(Main.getInstance().getDataFolder(),"data.yml");
+    private static Arena arena1 = new Arena("Alpha");
+    private static Arena arena2 = new Arena("Delta");
+    private static Arena arena3 = new Arena("Phi");
+    private static Arena arena4 = new Arena("Omega");
+    private static File configFile = new File(Main.getInstance().getDataFolder(),"data.yml");
 
-    private PlayerUser playerUser1 = new PlayerUser();
-    private PlayerUser playerUser2 = new PlayerUser();
-    private PlayerUser playerUser3 = new PlayerUser();
-    private PlayerUser playerUser4 = new PlayerUser();
+    private static PlayerUser playerUser1 = new PlayerUser();
+    private static PlayerUser playerUser2 = new PlayerUser();
+    private static PlayerUser playerUser3 = new PlayerUser();
+    private static PlayerUser playerUser4 = new PlayerUser();
     public RegisterArenas(){
         try{
             BufferedReader reader = new BufferedReader(new FileReader(configFile));
@@ -37,31 +37,33 @@ public class RegisterArenas {
         catch(IOException ex){
             ex.printStackTrace();
         }
-
-
+        getArena1().setPlayerUser(getPlayerUser1());
+        getArena2().setPlayerUser(getPlayerUser2());
+        getArena3().setPlayerUser(getPlayerUser3());
+        getArena4().setPlayerUser(getPlayerUser4());
     }
-    public Arena getArena1(){
+    public static Arena getArena1(){
         return arena1;
     }
-    public Arena getArena2(){
+    public static Arena getArena2(){
         return arena2;
     }
-    public Arena getArena3(){
+    public static Arena getArena3(){
         return arena3;
     }
-    public Arena getArena4(){
+    public static Arena getArena4(){
         return arena4;
     }
-    public PlayerUser getPlayerUser1(){
+    public static PlayerUser getPlayerUser1(){
         return playerUser1;
     }
-    public PlayerUser getPlayerUser2(){
+    public static PlayerUser getPlayerUser2(){
         return playerUser2;
     }
-    public PlayerUser getPlayerUser3(){
+    public static PlayerUser getPlayerUser3(){
         return playerUser3;
     }
-    public PlayerUser getPlayerUser4(){
+    public static PlayerUser getPlayerUser4(){
         return playerUser4;
     }
 

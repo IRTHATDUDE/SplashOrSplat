@@ -7,22 +7,27 @@ import java.util.List;
 import com.kyloka.splashAndSpat.Main;
 import com.kyloka.splashAndSpat.config.Configuration;
 import com.kyloka.splashAndSpat.game.GameState;
+import inventory.InventoryGUI;
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.World;
 import org.bukkit.block.Block;
 import org.bukkit.block.BlockState;
 import org.bukkit.configuration.file.YamlConfiguration;
+import org.bukkit.entity.Player;
+import org.bukkit.inventory.Inventory;
 
 public class Arena {
 	private String name;
-	private List<PlayerUser> playerUserList = new ArrayList<>();
+	private PlayerUser playerUser;
 	private List<Block> blockList = new ArrayList<>();
 	private List<BlockState> blockStateList = new ArrayList<>();
 	private Location lobbyLoc,dropLoc1,dropLoc2,fallLoc1,fallLoc2;
 	private YamlConfiguration config = Configuration.getDataConfig();
 	private GameState gameState;
+	private InventoryGUI gui = new InventoryGUI(10);
 	//functions
+	public InventoryGUI getGui(){return gui;}
 	public Arena(String name){
 		this.name = name;
 	}
@@ -32,11 +37,11 @@ public class Arena {
 	public String getName(){
 		return name;
 	}
-	public void setPlayerUserList(List<PlayerUser> tempList){
-		this.playerUserList = tempList;
+	public void setPlayerUser(PlayerUser playerUser){
+		this.playerUser = playerUser;
 	}
-	public List<PlayerUser> getPlayerUserList(){
-		return playerUserList;
+	public PlayerUser getPlayerList(){
+		return playerUser;
 	}
 
 	public void setGameState(GameState gameState){

@@ -1,8 +1,10 @@
 package com.kyloka.splashAndSpat.woolControl;
 
+import org.bukkit.ChatColor;
 import org.bukkit.DyeColor;
 import org.bukkit.Material;
 import org.bukkit.inventory.ItemStack;
+import org.bukkit.inventory.meta.ItemMeta;
 
 /**
  * Created by Matthew on 10/24/2016.
@@ -37,6 +39,9 @@ public enum ColoredWool {
     public ItemStack toItemStack(){
         ItemStack wool;
         wool = new ItemStack(Material.WOOL,1,dataColor);
+        ItemMeta woolMeta = wool.getItemMeta();
+        woolMeta.setDisplayName(colorOrder + "");
+        wool.setItemMeta(woolMeta);
 
         return wool;
     }

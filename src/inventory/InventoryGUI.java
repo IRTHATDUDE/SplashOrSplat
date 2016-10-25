@@ -18,6 +18,7 @@ public class InventoryGUI {
     private int inventoryAmt;
     private int guiAmt;
     private Inventory inv;
+    List<ItemStack> listOfWool = new ArrayList<>();
     public InventoryGUI(int inventoryAmt){
         if(inventoryAmt<9){
             this.guiAmt = 9;
@@ -26,39 +27,34 @@ public class InventoryGUI {
             this.guiAmt = 18;
         }
         this.inventoryAmt = inventoryAmt;
-    }
-    @SuppressWarnings("deprecation")
-    public void setInventory(){
-
-        Inventory tempInv = Bukkit.createInventory(null,guiAmt,"Choose a block!");
-        List<ItemStack> listOfWool = new ArrayList<>();
         for(ColoredWool cw: ColoredWool.values()){
-            listOfWool.add(cw.getColorOrder(),cw.toItemStack());
-            tempInv.setItem(cw.getColorOrder(),cw.toItemStack());
+            addWool(cw);
         }
-        ItemStack[] placeHolderList;
-        switch(inventoryAmt) {
-            case 10:
-                //{
-                 placeHolderList = listOfWool.toArray(new ItemStack[listOfWool.size()]);
+    }
 
-                Bukkit.getPlayer("nayoshi12").sendMessage(placeHolderList[0].toString());
-                break;
-                // }
-            case 9:
-
-                placeHolderList = listOfWool.toArray(new ItemStack[listOfWool.size()]);
-
-                Bukkit.getPlayer("nayoshi12").sendMessage(placeHolderList[0].toString());
-            default:
-                Main.getInstance().getLogger().info("Error in ln 46");
-                break;
+    @SuppressWarnings("deprecation")
+    public void addWool(ColoredWool cw){
+        listOfWool.add(cw.getColorOrder(),cw.toItemStack());
+    }
+    public void removeWool(ColoredWool cw){
+        if(listOfWool.contains(cw.toItemStack())) {
+            listOfWool.remove(cw.toItemStack());
         }
-
-        inv = tempInv;
-
+        else{
+            Main.getInstance().getLogger().info("You cannot select block");
+        }
     }
     public Inventory getInv(){
+        Inventory inv = Bukkit.createInventory(null,guiAmt,"Potato");
+        for(int i = 0; i<listOfWool.size();i++){
+            if(listOfWool.get(i) == null){
+                inv.setItem(i,new ItemStack(Material.STAINED_GLASS_PANE));
+            }
+            else {
+                inv.addItem(listOfWool.get(i));
+            }
+        }
+
         return inv;
     }
 
