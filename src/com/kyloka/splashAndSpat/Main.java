@@ -4,6 +4,7 @@ import com.kyloka.splashAndSpat.arena.RegisterArenas;
 import com.kyloka.splashAndSpat.command.Command;
 import com.kyloka.splashAndSpat.config.Configuration;
 import com.kyloka.splashAndSpat.event.Event;
+import com.kyloka.splashAndSpat.game.GameState;
 import org.bukkit.plugin.java.JavaPlugin;
 
 /**
@@ -23,7 +24,6 @@ public class Main extends JavaPlugin {
 
         myCmd.registerCommands();
         Event.registerEvents();
-
 
 
     }
