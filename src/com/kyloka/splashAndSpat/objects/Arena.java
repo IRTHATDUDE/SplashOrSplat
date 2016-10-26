@@ -26,6 +26,7 @@ public class Arena {
 	private YamlConfiguration config = Configuration.getDataConfig();
 	private GameState gameState;
 	private InventoryGUI gui = new InventoryGUI(10);
+
 	//functions
 	public InventoryGUI getGui(){return gui;}
 	public Arena(String name){
@@ -50,6 +51,7 @@ public class Arena {
 	public GameState getGameState(){
 		return gameState;
 	}
+
 	public void defaultConfig(){
 		int loc1 = 0;
 		String world = Main.getInstance().getServer().getWorlds().get(0).getName();

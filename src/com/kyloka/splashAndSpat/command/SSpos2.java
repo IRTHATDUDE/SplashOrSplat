@@ -1,6 +1,7 @@
 package com.kyloka.splashAndSpat.command;
 
 import com.kyloka.splashAndSpat.Main;
+import com.kyloka.splashAndSpat.arena.RegisterArenas;
 import com.kyloka.splashAndSpat.objects.Arena;
 import org.bukkit.ChatColor;
 import org.bukkit.Location;
@@ -24,16 +25,18 @@ public class SSpos2 implements CommandExecutor{
         Player player = (Player) sender;
         Location loc = player.getLocation();
         com.kyloka.splashAndSpat.command.Command myCmd = new com.kyloka.splashAndSpat.command.Command();
-        Arena arena1 = myCmd.getArena1();
+        Arena arena1 = RegisterArenas.getArena1();
         if(args.length==0){
             sender.sendMessage(ChatColor.RED + "available arguments are: lobby, drop, fall");
             return false;
         }
-        if(args[0].equals("lobby")){
+        if(args[0].equalsIgnoreCase("lobby")){
             sender.sendMessage(ChatColor.RED + "It's not necessary to register a second position for a lobby");
         }
-        if(args[0].equals("drop")){
-
+        if(args[0].equalsIgnoreCase("drop")){
+            arena1.setDropLoc2(loc);
+            sender.sendMessage(ChatColor.GREEN + "Drop location 2 for Arena 1 has been set.");
+            arena1.registerEachLocation();
         }
 
 

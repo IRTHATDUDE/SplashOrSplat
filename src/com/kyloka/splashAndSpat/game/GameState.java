@@ -3,16 +3,24 @@ package com.kyloka.splashAndSpat.game;
 /**
  * Created by Matthew on 10/16/2016.
  */
-public class GameState {
+public enum GameState {
+    WAITING,
+    STARTING,
+    COUNTDOWN,
+    DROPPING,
+    END
+    ;
+    private GameState(){
 
-    private GameList state;
-    public void setState(GameList state){
+    }
+    private GameState state;
+    public void setState(GameState state){
         this.state = state;
     }
-    public boolean isState(GameList state){
+    public boolean isState(GameState state){
         return this.state == state;
     }
-    public GameList getWaiting(){
+    public GameState getWaiting(){
         return state;
     }
 }

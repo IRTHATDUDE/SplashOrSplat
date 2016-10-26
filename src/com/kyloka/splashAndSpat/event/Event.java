@@ -8,10 +8,11 @@ import org.bukkit.plugin.PluginManager;
  */
 public class Event  {
     public static void registerEvents(){
-
+        Main instance = Main.getInstance();
         PluginManager pm = Main.getInstance().getServer().getPluginManager();
-        pm.registerEvents(new ReplaceBlockUnderEvent(), Main.getInstance());
-        pm.registerEvents(new SelectBlockEvent(), Main.getInstance());
+        pm.registerEvents(new ReplaceBlockUnderEvent(), instance);
+        pm.registerEvents(new SelectBlockEvent(), instance);
+        pm.registerEvents(new PlayerLeaveEvent(), instance);
 
     }
 

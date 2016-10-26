@@ -31,11 +31,16 @@ public class SSpos1 implements CommandExecutor {
             sender.sendMessage(ChatColor.RED + "available arguments are: lobby, drop, fall");
             return false;
         }
-        if(args[0].equals("lobby")){
+        if(args[0].equalsIgnoreCase("lobby")){
             arena1.setLobbyLoc(loc);
             sender.sendMessage(ChatColor.GREEN + "Lobby join location has been set");
+            arena1.registerEachLocation();
         }
-
+        if(args[0].equalsIgnoreCase("drop")){
+            arena1.setDropLoc1(loc);
+            sender.sendMessage(ChatColor.GREEN + "Drop location 1 for Arena 1 has been set.");
+            arena1.registerEachLocation();
+        }
 
         return false;
     }

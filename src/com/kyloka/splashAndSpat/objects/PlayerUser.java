@@ -26,6 +26,10 @@ public class PlayerUser {
         listOfPlayers.add(player);
 
     }
+    public boolean isPlayerOnList(Player player){
+        return listOfPlayers.contains(player);
+
+    }
     public void removePlayer(Player player)throws PlayerOnListException{
         if(!listOfPlayers.contains(player)){
             throw new PlayerOnListException(player);

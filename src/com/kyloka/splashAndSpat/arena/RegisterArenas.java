@@ -1,6 +1,7 @@
 package com.kyloka.splashAndSpat.arena;
 
 import com.kyloka.splashAndSpat.Main;
+import com.kyloka.splashAndSpat.game.GameState;
 import com.kyloka.splashAndSpat.objects.Arena;
 import com.kyloka.splashAndSpat.objects.PlayerUser;
 
@@ -41,6 +42,11 @@ public class RegisterArenas {
         getArena2().setPlayerUser(getPlayerUser2());
         getArena3().setPlayerUser(getPlayerUser3());
         getArena4().setPlayerUser(getPlayerUser4());
+
+        getArena1().setGameState(GameState.WAITING);
+        getArena2().setGameState(GameState.WAITING);
+        getArena3().setGameState(GameState.WAITING);
+        getArena4().setGameState(GameState.WAITING);
     }
     public static Arena getArena1(){
         return arena1;

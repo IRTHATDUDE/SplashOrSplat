@@ -4,7 +4,6 @@ import com.kyloka.splashAndSpat.Main;
 import com.kyloka.splashAndSpat.arena.RegisterArenas;
 import com.kyloka.splashAndSpat.config.Configuration;
 import com.kyloka.splashAndSpat.exception.PlayerOnListException;
-import com.kyloka.splashAndSpat.game.GameList;
 import com.kyloka.splashAndSpat.game.GameState;
 import com.kyloka.splashAndSpat.objects.Arena;
 import com.kyloka.splashAndSpat.objects.PlayerUser;
@@ -36,7 +35,7 @@ public class SSJoin implements CommandExecutor {
         Arena arena1 = new RegisterArenas().getArena1();
         //player.sendMessage(new RegisterArenas().getArena1().getDropLoc1().toString());
         if(args.length == 0){
-            sender.sendMessage(ChatColor.RED + "You need to specify the arena you want to join in!");
+            sender.sendMessage(ChatColor.RED + "You need to specify the arena you want to join in! Arenas Are: Alpha, Delta, Phi, Omega");
             return false;
         }
         Location lobby = arena1.getLobbyLoc();
@@ -50,6 +49,12 @@ public class SSJoin implements CommandExecutor {
 
         player.openInventory(xD.getInv());
         player.sendMessage(ColoredWool.values().length + "");
+        try {
+            RegisterArenas.getArena1().getPlayerList().addPlayer(player);
+        }
+        catch(PlayerOnListException e){
+            e.printStackTrace();
+        }
         return true;
     }
 
