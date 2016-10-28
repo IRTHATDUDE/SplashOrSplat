@@ -12,3 +12,9 @@ commands:
     description: ayy
   ssstart:
     description: ayy
+  ssstop:
+    description: lmao
+  ssreset:
+    description: hai
+  ssleave:
+    description: leave the current game
