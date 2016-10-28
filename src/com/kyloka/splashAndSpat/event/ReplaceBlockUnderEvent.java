@@ -29,15 +29,18 @@ public class ReplaceBlockUnderEvent implements Listener {
         //player.sendMessage("The block below you is a " + blockBelow.getType());
         Arena arena1 = RegisterArenas.getArena1();
         PlayerUser playerList1 = arena1.getPlayerList();
-        if(blockBelow.getType()==Material.SEA_LANTERN && arena1.getPlayerList().isPlayerOnList(player)&&arena1.getGameState() == GameState.STARTING){
+
+        if(blockBelow.getType()==Material.SEA_LANTERN && arena1.getPlayerList().isPlayerOnList(player)&&arena1.getGameState() == GameState.STARTED&&arena1.getFallLoc1().getY()==blockBelow.getY()+1){
             tempLoc.getBlock().setType(playerList1.getColoredWool(player).toItemStack().getType());
             tempLoc.getBlock().setData(playerList1.getColoredWool(player).getDataColor());
-            arena1.setGameState(GameState.DROPPING);
+
 
         }
-        if(blockBelow.getType()==Material.SEA_LANTERN && arena1.getPlayerList().isPlayerOnList(player)&&arena1.getGameState() == GameState.DROPPING){
-            arena1.setGameState(GameState.COUNTDOWN);
+        if(blockBelow.getType()==Material.SEA_LANTERN && arena1.getPlayerList().isPlayerOnList(player)&&arena1.getGameState() == GameState.STARTED&&arena1.getFallLoc1().getY()==blockBelow.getY()+1){
             player.teleport(arena1.getLobbyLoc());
+        }
+        if(blockBelow.getType()==Material.WOOL&&!(blockBelow.getData() == playerList1.getColoredWool(player).getDataColor())&&blockBelow.getY() == arena1.getFallLoc1().getY()&&arena1.getGameState() == GameState.STARTED){
+            player.sendMessage("You are out");
         }
     }
 }

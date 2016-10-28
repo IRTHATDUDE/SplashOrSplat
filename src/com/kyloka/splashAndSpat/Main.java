@@ -5,6 +5,7 @@ import com.kyloka.splashAndSpat.command.Command;
 import com.kyloka.splashAndSpat.config.Configuration;
 import com.kyloka.splashAndSpat.event.Event;
 import com.kyloka.splashAndSpat.game.GameState;
+import com.kyloka.splashAndSpat.timer.TimeRegister;
 import org.bukkit.plugin.java.JavaPlugin;
 
 /**
@@ -21,12 +22,13 @@ public class Main extends JavaPlugin {
         config.loadAllConfig();
         RegisterArenas registerArenas = new RegisterArenas();
         Command myCmd = new Command();
-
+        TimeRegister.registerTimedEvents();
         myCmd.registerCommands();
         Event.registerEvents();
 
 
     }
+    public static void log(String log){instance.getLogger().info(log);}
     public static Main getInstance(){
         return instance;
     }

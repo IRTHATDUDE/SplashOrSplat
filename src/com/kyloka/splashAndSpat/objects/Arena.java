@@ -10,6 +10,7 @@ import com.kyloka.splashAndSpat.game.GameState;
 import inventory.InventoryGUI;
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
+import org.bukkit.Material;
 import org.bukkit.World;
 import org.bukkit.block.Block;
 import org.bukkit.block.BlockState;
@@ -81,6 +82,46 @@ public class Arena {
 		Bukkit.getLogger().info("hi");
 		Configuration.saveDataConfig();
 	}
+	public void resetArena(){
+		double x1 = fallLoc1.getX();
+		double y1 = fallLoc1.getY();
+		double z1 = fallLoc1.getZ();
+		double x2 = fallLoc2.getX();
+		double y2 = fallLoc2.getY();
+		double z2 = fallLoc2.getZ();
+		double lessX, moreX, lessZ, moreZ;
+		if (x1 > x2) {
+			lessX = x2;
+			moreX = x1;
+		} else {
+			lessX = x1;
+			moreX = x2;
+		}
+		if (z1 > z2) {
+			lessZ = z2;
+			moreZ =  z1;
+		} else {
+			lessZ = z1;
+			moreZ = z2;
+		}
+		double length = (int) (moreX - lessX);
+		double width = (int) (moreZ - lessZ);
+
+		World loc1World = fallLoc1.getWorld();
+		double area = Math.abs((length + 1) * (width + 1));
+
+		for (double li = lessX; li < moreX; li++) {
+			for (double wi = lessZ; wi < moreZ; wi++) {
+				Location placeholderLoc = new Location(loc1World, li, y1, wi);
+
+				Block placeholderBlock = loc1World.getBlockAt(placeholderLoc);
+				placeholderBlock.setType(Material.STATIONARY_WATER);
+
+			}
+		}
+
+
+	}
 	public void registerEachLocation(){
 		YamlConfiguration dataConfig = config;
 		String[] testArray = {"drop","fall"};
@@ -106,9 +147,9 @@ public class Arena {
 		z = dataConfig.getDouble(name+".drop.loc2.z");
 		world = Bukkit.getServer().getWorld(config.getString(name + ".drop.loc2.world"));
 		dropLoc2 = new Location(world,x,y,z);
-		x = dataConfig.getDouble(name+".drop.loc1.x");
-		y = dataConfig.getDouble(name+".drop.loc1.y");
-		z = dataConfig.getDouble(name+".drop.loc1.z");
+		x = dataConfig.getDouble(name+".fall.loc1.x");
+		y = dataConfig.getDouble(name+".fall.loc1.y");
+		z = dataConfig.getDouble(name+".fall.loc1.z");
 		world = Bukkit.getServer().getWorld(config.getString(name + ".fall.loc1.world"));
 		fallLoc1 = new Location(world,x,y,z);
 		x = dataConfig.getDouble(name+".fall.loc2.x");
@@ -132,7 +173,7 @@ public class Arena {
 
 	public void setDropLoc1(Location loc1){
 		dropLoc1 = loc1;
-		config.set(name + ".drop.loc1.x",loc1.getZ());
+		config.set(name + ".drop.loc1.x",loc1.getX());
 		config.set(name + ".drop.loc1.y",loc1.getBlockY());
 		config.set(name + ".drop.loc1.z",loc1.getZ());
 		config.set(name + ".drop.loc1.world",loc1.getWorld().getName());
@@ -140,7 +181,7 @@ public class Arena {
 	}
 	public void setDropLoc2(Location loc2){
 		dropLoc2 = loc2;
-		config.set(name + ".drop.loc2.x",loc2.getZ());
+		config.set(name + ".drop.loc2.x",loc2.getX());
 		config.set(name + ".drop.loc2.y",loc2.getBlockY());
 		config.set(name + ".drop.loc2.z",loc2.getZ());
 		config.set(name + ".drop.loc2.world",loc2.getWorld().getName());
@@ -148,7 +189,7 @@ public class Arena {
 	}
 	public void setFallLoc1(Location loc1){
 		fallLoc1 = loc1;
-		config.set(name + ".fall.loc1.x",loc1.getZ());
+		config.set(name + ".fall.loc1.x",loc1.getX());
 		config.set(name + ".fall.loc1.y",loc1.getBlockY());
 		config.set(name + ".fall.loc1.z",loc1.getZ());
 		config.set(name + ".fall.loc1.world",loc1.getWorld().getName());
@@ -156,7 +197,7 @@ public class Arena {
 	}
 	public void setFallLoc2(Location loc2){
 		fallLoc2 = loc2;
-		config.set(name + ".fall.loc2.x",loc2.getZ());
+		config.set(name + ".fall.loc2.x",loc2.getX());
 		config.set(name + ".fall.loc2.y",loc2.getBlockY());
 		config.set(name + ".fall.loc2.z",loc2.getZ());
 		config.set(name + ".fall.loc2.world",loc2.getWorld().getName());

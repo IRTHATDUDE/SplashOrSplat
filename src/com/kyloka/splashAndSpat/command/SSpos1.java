@@ -41,6 +41,11 @@ public class SSpos1 implements CommandExecutor {
             sender.sendMessage(ChatColor.GREEN + "Drop location 1 for Arena 1 has been set.");
             arena1.registerEachLocation();
         }
+        if(args[0].equalsIgnoreCase("fall")){
+            arena1.setFallLoc1(loc);
+            sender.sendMessage(ChatColor.GREEN + "Fall location 1 for Arena 1 has been set.");
+            arena1.registerEachLocation();
+        }
 
         return false;
     }

@@ -19,17 +19,24 @@ public class PlayerUser {
     private List<Player> listOfPlayers = new ArrayList<>();
     private HashMap<Player,Location> playerLocationHashMap = new HashMap<>();
     private HashMap<Player,ColoredWool> coloredWool = new HashMap<>();
-    public void addPlayer(Player player) throws PlayerOnListException{
-        if(listOfPlayers.contains(player)){
-            throw new PlayerOnListException(player);
-        }
+    private boolean turn = true;
+    private HashMap<Player,Boolean> isTurn = new HashMap<>();
+    public void addPlayer(Player player){
         listOfPlayers.add(player);
+        isTurn.put(player,false);
 
+    }
+    public boolean isTurn(Player player){
+        return isTurn.get(player);
+    }
+    public void setTurn(Player player,boolean turn){
+        isTurn.put(player,turn);
     }
     public boolean isPlayerOnList(Player player){
         return listOfPlayers.contains(player);
 
     }
+    public int getPlayerOrder(Player player){return listOfPlayers.indexOf(player); }
     public void removePlayer(Player player)throws PlayerOnListException{
         if(!listOfPlayers.contains(player)){
             throw new PlayerOnListException(player);

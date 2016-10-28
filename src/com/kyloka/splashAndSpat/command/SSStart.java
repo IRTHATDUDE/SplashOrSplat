@@ -24,13 +24,13 @@ public class SSStart implements CommandExecutor{
         }
         Arena arena1= RegisterArenas.getArena1();
         if(args[0].equalsIgnoreCase("alpha")){
-            if(arena1.getGameState()==GameState.DROPPING||arena1.getGameState()==GameState.COUNTDOWN||arena1.getGameState()==GameState.STARTING){
+            if(arena1.getGameState()==GameState.STARTED){
                 sender.sendMessage("The game already started!");
                 return false;
             }
             if(arena1.getGameState() == GameState.WAITING){
                 sender.sendMessage("The game is starting");
-                arena1.setGameState(GameState.STARTING);
+                arena1.setGameState(GameState.STARTED);
             }
         }
         return true;

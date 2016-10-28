@@ -5,9 +5,7 @@ package com.kyloka.splashAndSpat.game;
  */
 public enum GameState {
     WAITING,
-    STARTING,
-    COUNTDOWN,
-    DROPPING,
+    STARTED,
     END
     ;
     private GameState(){

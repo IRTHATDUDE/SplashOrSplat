@@ -32,7 +32,10 @@ public class SSJoin implements CommandExecutor {
             return false;
         }
         Player player = (Player)sender;
-        Arena arena1 = new RegisterArenas().getArena1();
+        Arena arena1 = RegisterArenas.getArena1();
+        Arena arena2 = RegisterArenas.getArena2();
+        Arena arena3 = RegisterArenas.getArena3();
+        Arena arena4 = RegisterArenas.getArena4();
         //player.sendMessage(new RegisterArenas().getArena1().getDropLoc1().toString());
         if(args.length == 0){
             sender.sendMessage(ChatColor.RED + "You need to specify the arena you want to join in! Arenas Are: Alpha, Delta, Phi, Omega");
@@ -41,20 +44,26 @@ public class SSJoin implements CommandExecutor {
         Location lobby = arena1.getLobbyLoc();
         if(args[0].equalsIgnoreCase("Alpha")){
             player.teleport(new Location(lobby.getWorld(),lobby.getX(),lobby.getY(),lobby.getZ(),lobby.getYaw(),lobby.getPitch()));
+            arena1.getPlayerList().addPlayer(player);
         }
+        else if(args[0].equalsIgnoreCase("Delta")){
+            player.teleport(new Location(lobby.getWorld(),lobby.getX(),lobby.getY(),lobby.getZ(),lobby.getYaw(),lobby.getPitch()));
+            arena2.getPlayerList().addPlayer(player);
+        }
+        else if(args[0].equalsIgnoreCase("Phi")){
+            player.teleport(new Location(lobby.getWorld(),lobby.getX(),lobby.getY(),lobby.getZ(),lobby.getYaw(),lobby.getPitch()));
+            arena3.getPlayerList().addPlayer(player);
+        }
+        else if(args[0].equalsIgnoreCase("Omega")){
+            player.teleport(new Location(lobby.getWorld(),lobby.getX(),lobby.getY(),lobby.getZ(),lobby.getYaw(),lobby.getPitch()));
+            arena4.getPlayerList().addPlayer(player);
+        }
+
         else{
+            player.sendMessage("That Arena doesn't exist ;L");
+        }
 
-        }
-        InventoryGUI xD = RegisterArenas.getArena1().getGui();
 
-        player.openInventory(xD.getInv());
-        player.sendMessage(ColoredWool.values().length + "");
-        try {
-            RegisterArenas.getArena1().getPlayerList().addPlayer(player);
-        }
-        catch(PlayerOnListException e){
-            e.printStackTrace();
-        }
         return true;
     }
 

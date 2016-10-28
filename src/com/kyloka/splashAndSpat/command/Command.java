@@ -16,6 +16,9 @@ public class Command {
         instance.getCommand("sspos1").setExecutor(new SSpos1());
         instance.getCommand("sspos2").setExecutor(new SSpos2());
         instance.getCommand("ssstart").setExecutor(new SSStart());
+        instance.getCommand("ssstop").setExecutor(new SSStop());
+        instance.getCommand("ssreset").setExecutor(new SSreset());
+        instance.getCommand("ssleave").setExecutor(new SSleave());
     }
 
 
