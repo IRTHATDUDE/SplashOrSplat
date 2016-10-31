@@ -19,8 +19,14 @@ public class PlayerUser {
     private List<Player> listOfPlayers = new ArrayList<>();
     private HashMap<Player,Location> playerLocationHashMap = new HashMap<>();
     private HashMap<Player,ColoredWool> coloredWool = new HashMap<>();
-    private boolean turn = true;
+    private HashMap<Player,Boolean> hasLanded = new HashMap<>();
     private HashMap<Player,Boolean> isTurn = new HashMap<>();
+    public boolean hasLanded(Player player){
+        return hasLanded.get(player);
+    }
+    public void setLanded(Player player, boolean bool){
+        hasLanded.put(player,bool);
+    }
     public void addPlayer(Player player){
         listOfPlayers.add(player);
         isTurn.put(player,false);
@@ -45,12 +51,13 @@ public class PlayerUser {
         listOfPlayers.remove(tempInt);
 
     }
-    public void setPrevCoords(Location loc,Player player)throws PlayerOnListException{
-        if(!listOfPlayers.contains(player)){
-            throw new PlayerOnListException(player);
-        }
+    public void setPrevCoords(Player player,Location loc){
+
         playerLocationHashMap.put(player,loc);
 
+    }
+    public void removeColoredWool(Player player){
+        coloredWool.remove(player);
     }
     public List<Player> getUserList(){
         return listOfPlayers;

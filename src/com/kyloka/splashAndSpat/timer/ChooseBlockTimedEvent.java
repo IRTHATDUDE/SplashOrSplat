@@ -16,32 +16,32 @@ import java.util.List;
 public class ChooseBlockTimedEvent extends BukkitRunnable {
     @Override
     public void run() {
-        Arena arena1 = RegisterArenas.getArena1();
-        GameState arena1GameState = arena1.getGameState();
-        if((arena1GameState == GameState.WAITING)){
-            PlayerUser playerUser = arena1.getPlayerList();
-            List<Player> playerList = playerUser.getUserList();
-            int i = 0;
-            for(Player p: playerList){
-                i++;
-                    if(arena1.getGameState()==GameState.WAITING){
-                        if(i==1 && playerUser.getColoredWoolList().get(p)== null&&playerList.size()!=1){
-                            p.openInventory(arena1.getGui().getInv());
-                            playerUser.setTurn(p,false);
-                            playerUser.setTurn(playerList.get(i),true);
+        Arena[] arenaArray = {RegisterArenas.getArena1(),RegisterArenas.getArena2(),RegisterArenas.getArena3(),RegisterArenas.getArena4()};
+        for(Arena arena:arenaArray){
+            GameState arena1GameState = arena.getGameState();
+            if((arena1GameState == GameState.WAITING)){
+                PlayerUser playerUser = arena.getPlayerList();
+                List<Player> playerList = playerUser.getUserList();
+                int i = 0;
+                for(Player p: playerList){
+                    i++;
+                    if(arena.getGameState()==GameState.WAITING){
+                        if(i==1 && playerUser.getColoredWool(p)==null &&playerList.size()!=1){
+                            p.openInventory(arena.getGui().getInv());
                             break;
                         }
-
-                        if(playerUser.isTurn(p)){
-                            Bukkit.broadcastMessage("hi:5");
-                            p.openInventory(arena1.getGui().getInv());
-                            playerUser.setTurn(p,false);
-                            playerUser.setTurn(playerList.get(i).getPlayer(),true);
+                        if(i>1&&
+                                playerUser.getColoredWool(p)==null&&
+                                playerList.size()==i){
+                            p.openInventory(arena.getGui().getInv());
+                            break;
                         }
                     }
 
 
+                }
             }
         }
+
     }
 }

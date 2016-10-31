@@ -1,0 +1,9 @@
+<component name="ArtifactManager">
+  <artifact type="jar" build-on-make="true" name="SplashOrSplat">
+    <output-path>$USER_HOME$/Documents/server/pluginn/DankShot/plugins</output-path>
+    <root id="archive" name="SplashOrSplat.jar">
+      <element id="module-output" name="SplashOrSplat" />
+      <element id="file-copy" path="$PROJECT_DIR$/src/plugin.yml" />
+    </root>
+  </artifact>
+</component>

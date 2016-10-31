@@ -1,9 +1,8 @@
-package inventory;
+package com.kyloka.splashAndSpat.inventory;
 
 import com.kyloka.splashAndSpat.Main;
 import com.kyloka.splashAndSpat.woolControl.ColoredWool;
 import org.bukkit.Bukkit;
-import org.bukkit.DyeColor;
 import org.bukkit.Material;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
@@ -18,6 +17,7 @@ public class InventoryGUI {
     private int inventoryAmt;
     private int guiAmt;
     private Inventory inv;
+    private String name;
     List<ItemStack> listOfWool = new ArrayList<>();
     public InventoryGUI(int inventoryAmt){
         if(inventoryAmt<9){
@@ -30,6 +30,10 @@ public class InventoryGUI {
         for(ColoredWool cw: ColoredWool.values()){
             addWool(cw);
         }
+
+    }
+    public void setName(String name){
+        this.name = name;
     }
 
     @SuppressWarnings("deprecation")
@@ -45,7 +49,7 @@ public class InventoryGUI {
         }
     }
     public Inventory getInv(){
-        Inventory inv = Bukkit.createInventory(null,guiAmt,"Potato");
+        Inventory inv = Bukkit.createInventory(null,guiAmt,name);
         for(int i = 0; i<listOfWool.size();i++){
             if(listOfWool.get(i) == null){
                 inv.setItem(i,new ItemStack(Material.STAINED_GLASS_PANE));

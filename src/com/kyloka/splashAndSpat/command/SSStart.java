@@ -18,19 +18,22 @@ public class SSStart implements CommandExecutor{
             sender.sendMessage("You must be a player to start a game");
             return false;
         }
+        Arena[] arenaArray = {RegisterArenas.getArena1(), RegisterArenas.getArena2(), RegisterArenas.getArena3(), RegisterArenas.getArena4()};
         if(args.length==0){
             sender.sendMessage(ChatColor.RED + "You need to select an Arena. Arena list: Alpha, Delta, Phi, Omega");
             return false;
         }
-        Arena arena1= RegisterArenas.getArena1();
-        if(args[0].equalsIgnoreCase("alpha")){
-            if(arena1.getGameState()==GameState.STARTED){
-                sender.sendMessage("The game already started!");
-                return false;
-            }
-            if(arena1.getGameState() == GameState.WAITING){
-                sender.sendMessage("The game is starting");
-                arena1.setGameState(GameState.STARTED);
+
+        for(Arena arena:arenaArray){
+            if(args[0].equalsIgnoreCase(arena.getName())){
+                if(arena.getGameState()==GameState.STARTED){
+                    sender.sendMessage("The game already started!");
+                    return false;
+                }
+                if(arena.getGameState() == GameState.WAITING){
+                    sender.sendMessage("The game is starting");
+                    arena.setGameState(GameState.STARTED);
+                }
             }
         }
         return true;

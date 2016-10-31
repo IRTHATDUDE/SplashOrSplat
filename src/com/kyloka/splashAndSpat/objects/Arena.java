@@ -1,13 +1,13 @@
 package com.kyloka.splashAndSpat.objects;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 
 import com.kyloka.splashAndSpat.Main;
 import com.kyloka.splashAndSpat.config.Configuration;
 import com.kyloka.splashAndSpat.game.GameState;
-import inventory.InventoryGUI;
+import com.kyloka.splashAndSpat.woolControl.ColoredWool;
+import com.kyloka.splashAndSpat.inventory.InventoryGUI;
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.Material;
@@ -15,8 +15,6 @@ import org.bukkit.World;
 import org.bukkit.block.Block;
 import org.bukkit.block.BlockState;
 import org.bukkit.configuration.file.YamlConfiguration;
-import org.bukkit.entity.Player;
-import org.bukkit.inventory.Inventory;
 
 public class Arena {
 	private String name;
@@ -26,19 +24,28 @@ public class Arena {
 	private Location lobbyLoc,dropLoc1,dropLoc2,fallLoc1,fallLoc2;
 	private YamlConfiguration config = Configuration.getDataConfig();
 	private GameState gameState;
-	private InventoryGUI gui = new InventoryGUI(10);
+	private List<Block> blockListFall = new ArrayList<>();
 
-	//functions
-	public InventoryGUI getGui(){return gui;}
+	private boolean firstTurn = true;
 	public Arena(String name){
 		this.name = name;
+
 	}
 	public void setName(String name){
 		this.name = name;
+		gui.setName(name);
 	}
 	public String getName(){
 		return name;
 	}
+	private InventoryGUI gui = new InventoryGUI(10);
+	//functions
+	public boolean getFirstTurn(){ return firstTurn;}
+	public void setFirstTurn(boolean bool){firstTurn = bool;}
+
+	public InventoryGUI getGui(){return gui;}
+
+
 	public void setPlayerUser(PlayerUser playerUser){
 		this.playerUser = playerUser;
 	}
@@ -159,6 +166,53 @@ public class Arena {
 		fallLoc2 = new Location(world,x,y,z);
 
 
+	}
+	public void resetDropArea(){
+		double x1,y1,z1,x2,y2,z2;
+		x1 = dropLoc1.getX();
+		x2 = dropLoc2.getX();
+		y1 = dropLoc1.getY();
+		y2 = dropLoc2.getY();
+		z1 = dropLoc1.getZ();
+		z2 = dropLoc2.getZ();
+		double moreX,lessX,moreZ,lessZ;
+		if (x1 > x2) {
+			lessX = x2;
+			moreX = x1;
+		} else {
+			lessX = x1;
+			moreX = x2;
+		}
+		if (z1 > z2) {
+			lessZ = z2;
+			moreZ =  z1;
+		} else {
+			lessZ = z1;
+			moreZ = z2;
+		}
+		double length = (int) (moreX - lessX);
+		double width = (int) (moreZ - lessZ);
+
+		World loc1World = fallLoc1.getWorld();
+		double area = Math.abs((length + 1) * (width + 1));
+		List<Block> blockListTemp = new ArrayList<>();
+		for (double li = lessX; li < moreX; li++) {
+			for (double wi = lessZ; wi < moreZ; wi++) {
+				Location placeholderLoc = new Location(loc1World, li, y1-1, wi);
+				blockListTemp.add(placeholderLoc.getBlock());
+				placeholderLoc.getBlock().setType(Material.STAINED_GLASS);
+				placeholderLoc.getBlock().setData(ColoredWool.BLACK.getDataColor());
+			}
+		}
+		blockListFall = blockListTemp;
+	}
+	public List<Block> getBlockListFall(){
+		return blockListFall;
+	}
+	public void removeDropBlocks(){
+		for(int i = 0; i < blockListFall.size(); i++){
+			blockListFall.get(i).setType(Material.AIR);
+		}
 	}
 	public void setLobbyLoc(Location loc1){
 		lobbyLoc = loc1;

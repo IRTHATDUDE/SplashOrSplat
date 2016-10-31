@@ -1,24 +1,12 @@
 package com.kyloka.splashAndSpat.command;
 
-import com.kyloka.splashAndSpat.Main;
 import com.kyloka.splashAndSpat.arena.RegisterArenas;
-import com.kyloka.splashAndSpat.config.Configuration;
-import com.kyloka.splashAndSpat.exception.PlayerOnListException;
-import com.kyloka.splashAndSpat.game.GameState;
 import com.kyloka.splashAndSpat.objects.Arena;
-import com.kyloka.splashAndSpat.objects.PlayerUser;
-import com.kyloka.splashAndSpat.woolControl.ColoredWool;
-import inventory.InventoryGUI;
-import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.Location;
 import org.bukkit.command.*;
 import org.bukkit.command.Command;
 import org.bukkit.entity.Player;
-import org.bukkit.inventory.Inventory;
-import org.bukkit.inventory.ItemStack;
-
-import java.util.logging.Level;
 
 /**
  * Created by Matthew on 10/16/2016.
@@ -42,26 +30,47 @@ public class SSJoin implements CommandExecutor {
             return false;
         }
         Location lobby = arena1.getLobbyLoc();
-        if(args[0].equalsIgnoreCase("Alpha")){
+        Arena[] arenaArray = {RegisterArenas.getArena1(), RegisterArenas.getArena2(), RegisterArenas.getArena3(), RegisterArenas.getArena4()};
+        for(Arena arena:arenaArray){
+            if(args[0].equalsIgnoreCase(arena.getName())){
+                arena.getPlayerList().setPrevCoords(player,player.getLocation());
+                arena.registerEachLocation();
+                player.teleport(arena.getLobbyLoc());
+                arena.getPlayerList().addPlayer(player);
+                arena.getPlayerList().setLanded(player,true);
+                return true;
+            }
+
+        }
+        /*if(args[0].equalsIgnoreCase("Alpha")){
+            arena1.getPlayerList().setPrevCoords(player,player.getLocation());
             player.teleport(new Location(lobby.getWorld(),lobby.getX(),lobby.getY(),lobby.getZ(),lobby.getYaw(),lobby.getPitch()));
+
             arena1.getPlayerList().addPlayer(player);
+            arena1.getPlayerList().setLanded(player,true);
         }
         else if(args[0].equalsIgnoreCase("Delta")){
+            arena2.getPlayerList().setPrevCoords(player,player.getLocation());
             player.teleport(new Location(lobby.getWorld(),lobby.getX(),lobby.getY(),lobby.getZ(),lobby.getYaw(),lobby.getPitch()));
             arena2.getPlayerList().addPlayer(player);
+            arena2.getPlayerList().setLanded(player,true);
         }
         else if(args[0].equalsIgnoreCase("Phi")){
+            arena3.getPlayerList().setPrevCoords(player,player.getLocation());
             player.teleport(new Location(lobby.getWorld(),lobby.getX(),lobby.getY(),lobby.getZ(),lobby.getYaw(),lobby.getPitch()));
             arena3.getPlayerList().addPlayer(player);
+            arena3.getPlayerList().setLanded(player,true);
         }
         else if(args[0].equalsIgnoreCase("Omega")){
+            arena4.getPlayerList().setPrevCoords(player,player.getLocation());
             player.teleport(new Location(lobby.getWorld(),lobby.getX(),lobby.getY(),lobby.getZ(),lobby.getYaw(),lobby.getPitch()));
             arena4.getPlayerList().addPlayer(player);
+            arena4.getPlayerList().setLanded(player,true);
         }
+        */
 
-        else{
             player.sendMessage("That Arena doesn't exist ;L");
-        }
+
 
 
         return true;

@@ -21,6 +21,7 @@ public class Main extends JavaPlugin {
         Configuration config = new Configuration();
         config.loadAllConfig();
         RegisterArenas registerArenas = new RegisterArenas();
+        registerArenas.registerArena();
         Command myCmd = new Command();
         TimeRegister.registerTimedEvents();
         myCmd.registerCommands();
@@ -28,6 +29,8 @@ public class Main extends JavaPlugin {
 
 
     }
+
+
     public static void log(String log){instance.getLogger().info(log);}
     public static Main getInstance(){
         return instance;

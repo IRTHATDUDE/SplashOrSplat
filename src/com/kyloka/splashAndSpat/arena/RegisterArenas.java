@@ -24,20 +24,38 @@ public class RegisterArenas {
     private static PlayerUser playerUser3 = new PlayerUser();
     private static PlayerUser playerUser4 = new PlayerUser();
     public RegisterArenas(){
+
+    }
+    public void registerArena(){
+        Arena[] arenaArray = {arena1,arena2,arena3,arena4};
+        String[] arenaName = {"Alpha","Delta","Phi","Omega"};
+        int i = 0;
+
         try{
             BufferedReader reader = new BufferedReader(new FileReader(configFile));
             boolean empty = reader.readLine() == null;
-            arena1.setName("Alpha");
             if (empty){
-                arena1.defaultConfig();
+                for(Arena arena:arenaArray){
+                    arena.defaultConfig();
+                    arena.registerEachLocation();
+                }
             }
-            arena1.registerEachLocation();
-        }catch(FileNotFoundException e){
+
+        }
+        catch(FileNotFoundException e){
             e.printStackTrace();
         }
         catch(IOException ex){
             ex.printStackTrace();
         }
+        for(int g = 0; g < arenaArray.length;g++){
+            arenaArray[g].setName(arenaName[g]);
+        }
+
+
+
+
+
         getArena1().setPlayerUser(getPlayerUser1());
         getArena2().setPlayerUser(getPlayerUser2());
         getArena3().setPlayerUser(getPlayerUser3());

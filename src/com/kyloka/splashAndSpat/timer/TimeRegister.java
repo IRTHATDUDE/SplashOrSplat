@@ -9,5 +9,6 @@ import org.bukkit.scheduler.BukkitTask;
 public class TimeRegister {
     public static void registerTimedEvents(){
         BukkitTask chooseBlock = new ChooseBlockTimedEvent().runTaskTimer(Main.getInstance(),0,10);
+        BukkitTask drop = new DropTimedEvent().runTaskTimer(Main.getInstance(),0,200);
     }
 }

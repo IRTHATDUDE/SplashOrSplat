@@ -30,16 +30,25 @@ public class SSleave implements CommandExecutor {
         if(bool1){
             player.sendMessage("You have been removed in Arena " + arena1.getName());
             try{
+                player.teleport(arena1.getPlayerList().getPrevCoords(player));
+                arena1.getGui().addWool(arena1.getPlayerList().getColoredWool(player));
+                arena1.getPlayerList().removeColoredWool(player);
                 arena1.getPlayerList().removePlayer(player);
+
             }catch (PlayerOnListException ex){
                 ex.printStackTrace();
             }
+
             return true;
         }
         else if(bool4){
             player.sendMessage("You have been removed in Arena " + arena4.getName());
             try{
+                player.teleport(arena4.getPlayerList().getPrevCoords(player));
+                arena4.getGui().addWool(arena4.getPlayerList().getColoredWool(player));
+                arena4.getPlayerList().removeColoredWool(player);
                 arena4.getPlayerList().removePlayer(player);
+
             }catch (PlayerOnListException ex){
                 ex.printStackTrace();
             }
@@ -48,6 +57,9 @@ public class SSleave implements CommandExecutor {
         else if(bool2){
             player.sendMessage("You have been removed in Arena " + arena2.getName());
             try{
+                player.teleport(arena2.getPlayerList().getPrevCoords(player));
+                arena2.getGui().addWool(arena2.getPlayerList().getColoredWool(player));
+                arena2.getPlayerList().removeColoredWool(player);
                 arena2.getPlayerList().removePlayer(player);
             }catch (PlayerOnListException ex){
                 ex.printStackTrace();
@@ -57,7 +69,11 @@ public class SSleave implements CommandExecutor {
         else if(bool3){
             player.sendMessage("You have been removed in Arena " + arena3.getName());
             try{
+                player.teleport(arena1.getPlayerList().getPrevCoords(player));
+                arena3.getGui().addWool(arena3.getPlayerList().getColoredWool(player));
+                arena3.getPlayerList().removeColoredWool(player);
                 arena3.getPlayerList().removePlayer(player);
+
             }catch (PlayerOnListException ex){
                 ex.printStackTrace();
             }
